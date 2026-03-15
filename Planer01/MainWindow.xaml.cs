@@ -161,6 +161,7 @@ namespace Planer01
 
             SubjectsView.Visibility = Visibility.Collapsed;
             TasksView.Visibility = Visibility.Visible;
+            AbsenceCounterView.Visibility = Visibility.Collapsed;
         }
         // KONIEC FUNKCJI ZADAŃ
         //...
@@ -176,6 +177,7 @@ namespace Planer01
 
             SubjectsView.Visibility = Visibility.Visible;
             TasksView.Visibility = Visibility.Collapsed;
+            AbsenceCounterView.Visibility = Visibility.Collapsed;
         }
 
         private void AddSubject(string name)
@@ -190,6 +192,7 @@ namespace Planer01
                 subjects.Add(subject);
                 SubjectListBox.Items.Add(subject);
                 SubjectComboBox.Items.Add(subject);
+                AbsenceSubjectListBox.Items.Add(subject);
             }
         }
 
@@ -229,5 +232,35 @@ namespace Planer01
                 
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+        // KONIEC FUNKCJI PRZEDMIOTÓW
+
+
+
+
+
+        // FUNKCJE LICZNIKA NIEOBECNOSCI
+
+        private void ShowAbsenceCounter_Click(object sender, RoutedEventArgs e)
+        {
+            AbsenceCounterView.Visibility = Visibility.Visible;
+            SubjectsView.Visibility = Visibility.Collapsed;
+            TasksView.Visibility = Visibility.Collapsed;
+        }
+
+
+
+
+
+
     }
 }

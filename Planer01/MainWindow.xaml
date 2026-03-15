@@ -17,14 +17,15 @@
         </Grid.ColumnDefinitions>
 
         <!-- prawy panel -->
-        <StackPanel Grid.Column="1">
-            <Button Content="Zadania" Click="ShowTasks_Click" Margin="5"/>
-            <Button Content="Przedmioty" Click="ShowSubjects_Click" Margin="5" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+        <StackPanel Grid.Column="1" Margin="0,150,0,0">
+            <Button Content="Zadania" FontSize="15" Click="ShowTasks_Click" Margin="5" Height="30"/>
+            <Button Content="Przedmioty" FontSize="15" Click="ShowSubjects_Click" Margin="5"  Height="30" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
+            <Button Content= "Licznik nieobecności" FontSize="15" Click="ShowAbsenceCounter_Click" Margin="5"  Height="30"/>
         </StackPanel>
 
         <!-- lewa część -->
         <Grid Grid.Column="0">
-            <Grid x:Name="TasksView">
+            <Grid x:Name="TasksView" Visibility="Collapsed">
                 <!-- TU wklejasz swój obecny interfejs zadań -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -47,7 +48,7 @@
                     
                 </ComboBox>
                 <!-- Pole do wpisania zadania -->
-                <TextBox x:Name="TaskTextBox"
+                <TextBox x:Name="TaskTextBox" 
                 Height="30"
                 Margin="0,0,0,10"
                 KeyDown="TaskTextBox_KeyDown"
@@ -55,63 +56,95 @@
 
                 <!-- Przycisk dodawania -->
                 <Button Grid.Row="1"
-    Content="Dodaj zadanie"
-    Height="30"
-    Click="AddTask_Click"
-    Margin="10,0,400,10"/>
+                 Content="Dodaj zadanie"
+                 Height="30"
+                 Click="AddTask_Click"
+                 Margin="10,0,400,10"/>
                 <!-- Usuwanie ostatniego zadania -->
                 <Button Grid.Row="1"
-        Content="Usuń ostatnie zadanie"
-        Height="30"
-        Click="RemoveTask_Click"
-        Margin="400,0,10,10"/>
+                 Content="Usuń ostatnie zadanie"
+                 Height="30"
+                 Click="RemoveTask_Click"
+                 Margin="400,0,10,10"/>
                 <!-- Usuwanie wybranego zadania -->
                 <Button Grid.Row="2"
-        Content="Usuń"
-        Height="29.5"
-        Click="RemoveSelectedTask_Click"
-        Margin="10,0,400,10"/>
+                 Content="Usuń"
+                 Height="29.5"
+                 Click="RemoveSelectedTask_Click"
+                 Margin="10,0,400,10"/>
 
 
                 <!-- Lista zadań -->
                 <ListBox x:Name="TasksListBox"
-     Grid.Row="3" Grid.RowSpan="2"
+                Grid.Row="3" Grid.RowSpan="2"
          
          MouseDoubleClick = "TasksListBox_MouseDoubleClick"/>
             </Grid>
 
-            <Grid x:Name="SubjectsView" Visibility="Collapsed">
+            <Grid x:Name="SubjectsView" Visibility="Visible">
                 <!-- TU zrobimy interfejs przedmiotów -->
+                
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="39*"/>
                     <RowDefinition Height="275*"/>
                 </Grid.RowDefinitions>
+                
+                <TextBlock Text="Przedmioty" Grid.Row="0" FontSize="25" FontWeight="Bold" Margin="10" FontStyle="Italic"/>
                 <!-- dodawanie przedmiotu -->
-                <Button Grid.Row="1"
-                Content="Dodaj przedmiot"
-                Height="30"
+                <Button Grid.Row="2" Grid.RowSpan="1" Width="32"
+                Content="+" FontSize="20"
+                Height="32"
                 Click="AddSubject_Click"
-                Margin="10,0,400,10"/>
+                Margin="292,0,272,8"/>
 
                 <!-- Pole do wpisania nazwy przedmiotu -->
-                <TextBox x:Name="SubjectTextBox"
-                Height="30"
-                Margin="0,0,0,10"
+                <TextBox x:Name="SubjectTextBox" Grid.Row="2" Grid.RowSpan="1" FontSize="17.5"
+                Height="32"
+                Margin="0,0,304,8"
                 KeyDown="SubjectTextBox_KeyDown"/>
 
 
                 <!-- Lista przedmiotów -->
-                <ListBox x:Name="SubjectListBox"
-                Grid.Row="3" Grid.RowSpan="2"
-                MouseDoubleClick = "SubjectsListBox_MouseDoubleClick"/>
-                
-                
+                <ListBox x:Name="SubjectListBox"  FontSize="16" Margin="0,0,272,0" 
+                Grid.Row="3" Grid.RowSpan="2" HorizontalContentAlignment="Center"
+                MouseDoubleClick = "SubjectsListBox_MouseDoubleClick" >
+                    <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        
+                        <TextBlock Text="{Binding Name}" 
+                      TextAlignment="Center"
+                      TextTrimming="CharacterEllipsis"
+                      MaxWidth="200"/>
+                        
+                    </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+           
+        </Grid>
+            
+                <Grid x:Name="AbsenceCounterView" Visibility="Collapsed">
+                    <!-- TU zrobimy interfejs licznika nieobecności -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="39*"/>
+                        <RowDefinition Height="275*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- lista przedmiotów -->
+                <ListBox x:Name="AbsenceSubjectListBox" Margin="0,0,250,0" FontSize="17.5"
+                         Grid.Row="3" Grid.RowSpan="2"/>
+                    
+                    
+
+
             </Grid>
+
         </Grid>
 
-        
-        
     </Grid>
 </Window>
