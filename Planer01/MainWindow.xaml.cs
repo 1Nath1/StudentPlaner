@@ -229,19 +229,10 @@ namespace Planer01
                 subjects.Remove(selectedSubject);
                 SubjectListBox.Items.Remove(selectedSubject);
                 SubjectComboBox.Items.Remove(selectedSubject);
-                
+                AbsenceSubjectListBox.Items.Remove(selectedSubject);
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
         // KONIEC FUNKCJI PRZEDMIOTÓW
 
 
